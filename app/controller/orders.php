@@ -1,14 +1,10 @@
 <?php
-
+require_once __DIR__."/../init.php";
 class Orders extends Controller
 {
     public function Index()
     {
-        // $data = $this->model('Transaction_model')->getAllTable();
-        $data = new Login();
-        $data = $data->findRowfromSession();
-        $data = mysqli_fetch_array($data);
-        $this->view("orders/index", $data);
+        $this->view("orders/index");
     }
 
     public function AddOrder($weight, $duration, $category, $payment, $user)
@@ -19,7 +15,17 @@ class Orders extends Controller
     public function History()
     {
         Session::init();
+        if(!Session::exists('email')){
+            $obj = new Login();
+            $obj->Index();
+            return;
+        }
+        $this->view("history/index");
+    }
+
+    public function getDataTable(){
+        Session::init();
         $data = $this->model('Transaction_model')->getAllTable($_SESSION['email']);
-        $this->view("history/index", $data);
+        return $data;
     }
 }

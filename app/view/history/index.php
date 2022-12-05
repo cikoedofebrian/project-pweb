@@ -1,28 +1,28 @@
 <?php
-
-Session::init();
-if (Session::exists('email')) {
-    header("Location: ../login/index");
-    die();
-}
+require_once '../../init.php';
+$data = new Orders();
+$data = $data->getDataTable();
+require_once("../template/header.php");
 ?>
 
 <body>
-    <header class="header">
+    <?php require_once("../template/navbar.php"); ?>
 
-        <a href="../home/index" class="logo"> <i class="fas fa-shopping-basket"></i> Laundryin </a>
-
-        <nav class="navbar">
-            <a href="../home/index">home</a>
-            <a href="../orders/history">history</a>
-            <a href="../orders/index">orders</a>
-            <a href="../login/index">account</a>
-        </nav>
-    </header>
-    <div class="container2">
         <?php
+        if (mysqli_num_rows($data)<=0){
+            ?>
+            <center>    
+                <div class="jumbotron jumbotron-fluid" style="margin-top:10%;">
+                    <div class="container-fluid">
+                    <h1 class="display" style="font-size: 8em;">Histori Kosong</h1>
+                <p class="lead" style="font-size: 2em;" >Lakukan order untuk bisa melihat histori.</p>
+            </div>
+            </center>
+            <?php
+        }else{
         while ($row = $data->fetch_assoc()) {
         ?>
+            <div class="container2">
             <div class="left">
                 <div class="info-box">
                     <div class="receipt">
@@ -51,9 +51,10 @@ if (Session::exists('email')) {
                     </div>
                 </div>
             </div>
-
+        </div>
         <?php
         }
+    }
         ?>
     </div>
 </body>

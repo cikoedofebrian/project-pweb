@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ ."/../init.php";
 class Index extends Controller
 {
     public function Index()
@@ -6,3 +7,4 @@ class Index extends Controller
         $this->view("index/index");
     }
 }
+

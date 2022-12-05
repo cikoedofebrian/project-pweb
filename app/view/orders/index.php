@@ -1,14 +1,17 @@
 <?php
 
+require_once '../../init.php';
 Session::init();
+
+$data = new Login();
+
 if (!Session::exists('email')) {
-    header("Location: ../login/index");
+    $data->Index();
     exit();
 }
 
-
-
-
+$data = $data->findRowfromSession();
+$data = mysqli_fetch_array($data);
 
 if (isset($_POST['submit'])) {
     $orderobj = new Orders();
@@ -32,19 +35,13 @@ if (isset($_POST['submit'])) {
         width: 100%;
     }
 </style>
+<?php 
+require_once("../template/header.php");
+?>
+
 
 <body class="w-screen h-screen">
-    <header class="header">
-
-        <a href="../home/index" class="logo"> <i class="fas fa-shopping-basket"></i> Laundryin </a>
-
-        <nav class="navbar">
-            <a href="../home/index">home</a>
-            <a href="../orders/history">history</a>
-            <a href="../orders/index">orders</a>
-            <a href="../login/index">account</a>
-        </nav>
-    </header>
+<?php require_once("../template/navbar.php"); ?>
     <section class="w-full h-full order" id="order" style="padding-top: 20vh;">
 
         <h1 class="heading"> order <span>form</span> </h1>

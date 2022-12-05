@@ -12,7 +12,7 @@ define('DEFAULT_CONTROLLER_ACTION', 'index');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'laundry_web');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'root');
 
 // View Config
 define('VIEW_PATH', '../app/view/');

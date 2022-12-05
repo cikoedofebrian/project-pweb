@@ -1,16 +1,17 @@
+<?php 
+require_once '../../init.php';
+require_once("../template/header.php");
+$profile = new Login();
+$data = mysqli_fetch_array($profile->findRowfromSession());
+if (isset($_GET['cont'])){
+    if ($_GET['cont']=='logout'){
+        $profile->Logout();
+    }
+}
+?>
+
 <body>
-
-    <header class="header">
-
-        <a href="../home/index" class="logo"> <i class="fas fa-shopping-basket"></i> Laundryin </a>
-
-        <nav class="navbar">
-            <a href="../home/index">home</a>
-            <a href="../orders/history">history</a>
-            <a href="../orders/index">orders</a>
-            <a href="../login/index">account</a>
-        </nav>
-    </header>
+    <?php require_once("../template/navbar.php"); ?>
 
 
     <section class="order" id="profile" style="margin-top: 8vh;">
@@ -34,7 +35,7 @@
                     <input type="text" placeholder="Address" disabled value="<?= $data["address"] ?>">
                 </div>
             </div>
-            <a href="../login/logout" id="logout" type="button" class="btn btn-primary" style="margin:10px">Log Out</a>
+            <a href="?cont=logout" id="logout" type="button" class="btn btn-primary" style="margin:10px">Log Out</a>
 
         </form>
     </section>

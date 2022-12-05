@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__."/../init.php";
 class Login extends Controller
 {
     public function Index()
@@ -35,9 +35,9 @@ class Login extends Controller
         Session::init();
         Session::delete("email");
         if (Cookie::exists("email")) {
-            Cookie::delete("user");
+            Cookie::delete("email");
         }
-        header("Location: ../home/index");
+        $this->Index();
     }
 
     public function RegisterNewAccount($name,  $email, $address, $password1, $password2)
@@ -86,7 +86,6 @@ class Login extends Controller
 
     public function Profile()
     {
-        $data = mysqli_fetch_array($this->findRowfromSession());
-        $this->view("login/profile", $data);
+        $this->view("login/profile");
     }
 }

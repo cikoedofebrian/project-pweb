@@ -1,25 +1,15 @@
 <?php
-
+require_once("../template/header.php");
 ?>
 
 <body>
-    <header class="header">
-
-        <a href="../home/index" class="logo"> <i class="fas fa-shopping-basket"></i> Laundryin </a>
-
-        <nav class="navbar">
-            <a href="../home/index">home</a>
-            <a href="../orders/history">history</a>
-            <a href="../orders/index">orders</a>
-            <a href="../login/index">account</a>
-        </nav>
-    </header>
+    <?php require_once("../template/navbar.php"); ?>
 
     <section class="home" id="home">
 
         <div class="content">
             <h3>fresh and <span>clean</span> laundry for you</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam libero nostrum veniam facere tempore nisi.</p>
+            <p>Gapunya waktu untuk ngelakuin laundry? Laundry disini aja!.</p>
             <a href="#" class="btn">shop now</a>
         </div>
 
@@ -32,23 +22,23 @@
         <div class="box-containers">
 
             <div class="boxs">
-                <img src="../images/shirt.jpg" alt="">
+                <img src="../../../public/images/shirt.jpg" alt="">
                 <h3>clothes</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+                <p>Kerjaan aman, baju aman!</p>
                 <a href="#" class="btn">read more</a>
             </div>
 
             <div class="boxs">
-                <img src="../images/shoes.jpg" alt="">
+                <img src="../../../public/images/shoes.jpg" alt="">
                 <h3>shoes</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+                <p>Sepatumu kotor dan gatau tempat nyucinya? Disini bahkan bisa putihin sepatu lho!</p>
                 <a href="#" class="btn">read more</a>
             </div>
 
             <div class="boxs">
-                <img src="../images/helmet.jpg" alt="">
+                <img src="../../../public/images/helmet.jpg" alt="">
                 <h3>helmet</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, earum!</p>
+                <p>Helm kamu bau, tinggalin disini aja! Pasti besok wangi!</p>
                 <a href="#" class="btn">read more</a>
             </div>
 
@@ -56,5 +46,6 @@
 
     </section>
 </body>
-
-<!-- </html> -->
+<?php 
+require_once("../template/footer.php");
+?>

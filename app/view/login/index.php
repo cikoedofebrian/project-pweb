@@ -1,7 +1,10 @@
 <?php
+
+require_once '../../init.php';
 Session::init();
 if (Session::exists('email')) {
-    header("Location: ../login/profile");
+    $loginobj = new Login();
+    $loginobj->Profile();
     die();
 }
 
@@ -12,8 +15,8 @@ if (isset($_POST['submit'])) {
         if (isset($_POST['remember']) == "Yes") {
             Cookie::put("email", $_POST['email']);
         };
-        header("Location: ../home/index");
-        die();
+        $home = new Home();
+        $home->Index();
     }
 }
 
@@ -21,23 +24,23 @@ if (isset($_POST['register'])) {
     $loginobj = new Login();
     $err = $loginobj->RegisterNewAccount($_POST['rname'], $_POST['remail'], $_POST['raddress'], $_POST['rpassword1'], $_POST['rpassword2']);
     if (!isset($err)) {
-        header("Location: ../home/index");
+        $home = new Home();
+        $home->Index();
     }
 }
+
+if (isset($_GET['cont'])){
+    if($_GET['cont']=='forgot'){
+        $login = new Login();
+        $login->ForgotPass();
+    }
+}
+
+require_once("../template/header.php");
 ?>
 
 <body>
-    <header class="header">
-
-        <a href="../home/index" class="logo"> <i class="fas fa-shopping-basket"></i> Laundryin </a>
-
-        <nav class="navbar">
-            <a href="../home/index">home</a>
-            <a href="../orders/history">history</a>
-            <a href="../orders/index">orders</a>
-            <a href="../login/index">account</a>
-        </nav>
-    </header>
+    <?php require_once("../template/navbar.php"); ?>
 
     <div class="container w-screen" style="margin: 0px auto; margin-top: 20vh;">
         <div class="forms">
@@ -66,7 +69,7 @@ if (isset($_POST['register'])) {
                             <label for="logCheck" class="text">Remember me</label>
                         </div>
 
-                        <a href="./forgotpass" class="text">Forgot password?</a>
+                        <a href="?cont=forgot" class="text">Forgot password?</a>
                     </div>
 
                     <div class="input-field button">
